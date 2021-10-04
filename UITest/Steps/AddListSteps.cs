@@ -26,7 +26,7 @@ namespace MobileFramework.Steps
         [Given(@"I am on the Browse Page")]
         public void GivenIAmOnTheBrowsePage()
         {
-            _browseListPage = _basePage.NavigateToBrowsePage();
+            _browseListPage = _basePage.NavigateToNotesListPage();
         }
 
         [When(@"I click the add")]

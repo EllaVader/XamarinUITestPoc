@@ -31,7 +31,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Features\AddListItem.feature" />
-    <None Include="test.runsettings" />
+    <None Include="test.runsettings">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\Settings.cs" />
@@ -66,14 +68,6 @@
     <PackageReference Include="Xamarin.UITest">
       <Version>3.2.2</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\JanineTestApp\JanineTestApp.iOS\JanineTestApp.iOS.csproj">
-      <Project>{A75172CF-0090-4F13-B39E-08DCDD38DAC5}</Project>
-      <Name>JanineTestApp.iOS</Name>
-      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
-      <Private>False</Private>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

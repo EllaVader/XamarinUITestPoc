@@ -9,7 +9,7 @@ namespace MobileFramework.Pages
 
         protected IApp AppContext;
 
-        protected Query BrowseButton = x => x.Marked("Browse");
+        protected Query NotesButton = x => x.Marked("Notes");
         protected Query AboutButton = x => x.Marked("About");
 
         public BasePage(IApp app)
@@ -17,9 +17,9 @@ namespace MobileFramework.Pages
             AppContext = app;
         }
 
-        public BrowseListPage NavigateToBrowsePage()
+        public BrowseListPage NavigateToNotesListPage()
         {
-            AppContext.Tap(BrowseButton);
+            AppContext.Tap(NotesButton);
             BrowseListPage browseListPage = new BrowseListPage(AppContext);
             AppContext.WaitForElement(browseListPage.AddItemButton);
             return browseListPage;
