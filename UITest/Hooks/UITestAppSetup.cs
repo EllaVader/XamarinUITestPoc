@@ -29,6 +29,8 @@ namespace MobileFramework.Hooks
             // set the IApp instance now - use this in step classes via Dependency Injection
             _container.RegisterInstanceAs(_app);
 
+            _app.Repl();
+
         }
 
     }

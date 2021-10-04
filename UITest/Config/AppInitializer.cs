@@ -12,17 +12,27 @@ namespace MobileFramework.Config
                 var path = Settings.PackagePath + Settings.PackageName;//@"C:\Users\JanineRoe\source\repos\JanineTestApp\JanineTestApp\JanineTestApp.Android\bin\Release\com.companyname.janinetestapp.apk";
                 return ConfigureApp.Android.ApkFile(path).StartApp();
             }
-
-            return ConfigureApp.iOS.StartApp();
+            else
+            {
+                var path = "/Users/janine/code/XamarinUITestPoc/JanineTestApp/JanineTestApp.iOS/bin/iPhoneSimulator/Debug/device-builds/iphone se (2nd generation)-15.0/JanineTestApp.iOS.app";
+                return ConfigureApp.iOS
+                    .Debug()
+                    .AppBundle(path)
+                    //.InstalledApp("com.companyname.JanineTestApp")
+                   // .DeviceIdentifier("DB9CD45A-A511-4623-A8FE-330DB8B62A6A")
+                    .StartApp();
+            }
+            
         }
 
-        public static void InitializeSettings(string target)
+        public static void InitializeSettings(string t)
         {
-            Settings.Name = TestConfiguration.Configuration.TestSettings[target].Name;
-            Settings.Platform = (Platform)Enum.Parse(typeof(Platform), TestConfiguration.Configuration.TestSettings[target].Platform);
-            Settings.PackagePath = TestConfiguration.Configuration.TestSettings[target].PackagePath;
-            Settings.PackageName = TestConfiguration.Configuration.TestSettings[target].PackageName;
-            Settings.Environment = TestConfiguration.Configuration.TestSettings[target].Environment;
+            var target = "Dev-iOS";
+            //Settings.Name = TestConfiguration.Configuration.TestSettings[target].Name;
+            Settings.Platform = Platform.iOS; //(Platform)Enum.Parse(typeof(Platform), TestConfiguration.Configuration.TestSettings[target].Platform);
+            Settings.PackagePath = "/Users/janine/code/XamarinUITestPoc/JanineTestApp/JanineTestApp.iOS/bin/iPhoneSimulator/Debug/";//TestConfiguration.Configuration.TestSettings[target].PackagePath;
+            Settings.PackageName = "com.companyname.JanineTestApp";//TestConfiguration.Configuration.TestSettings[target].PackageName;
+            Settings.Environment = "";//TestConfiguration.Configuration.TestSettings[target].Environment;
         }
     }
 }

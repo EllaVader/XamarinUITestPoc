@@ -67,5 +67,13 @@
       <Version>3.2.2</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JanineTestApp\JanineTestApp.iOS\JanineTestApp.iOS.csproj">
+      <Project>{A75172CF-0090-4F13-B39E-08DCDD38DAC5}</Project>
+      <Name>JanineTestApp.iOS</Name>
+      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
