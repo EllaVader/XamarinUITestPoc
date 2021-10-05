@@ -40,15 +40,10 @@ namespace MobileFramework.Hooks
             }
             else
             {
+                var t = Environment.GetEnvironmentVariable("TARGET");
+                TestContext.Out.WriteLine($"TARGET: {t}");
                 TestContext.Out.WriteLine("Running test in App Center");
                 Console.WriteLine("Running test in App Center");
-                //string blah = TestContext.Parameters.Get("TARGET");
-                //TestContext.Out.WriteLine($"TestContext target is: {blah}");
-                //Console.WriteLine($"TestContext target is: {blah}");
-                //string anotherTarget = Environment.GetEnvironmentVariable("TARGET");
-                //TestContext.Out.WriteLine($"anotherTarget is: {anotherTarget}");
-                //Console.WriteLine($"anotherTarget is: {anotherTarget}");
-                //AppInitializer.InitializeSettings(anotherTarget);
                 _app = ConfigureApp.Android.StartApp();//AppInitializer.StartApp();
             }
 

@@ -1,4 +1,5 @@
-﻿using MobileFramework.Pages;
+﻿using MobileFramework.Models;
+using MobileFramework.Pages;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -38,10 +39,10 @@ namespace MobileFramework.Steps
         [When(@"I enter the list details as")]
         public void WhenIEnterTheListDetailsAs(Table table)
         {
-            dynamic data = table.CreateDynamicInstance();
-            _scenarioContext.Add("title", data.title);
-            _scenarioContext.Add("description", data.description);
-            _browseListPage = _addListItemPage.AddNewItem(data.title, data.description);
+            Note note = table.CreateInstance<Note>();
+            _scenarioContext.Add("title", note.Title);
+            _scenarioContext.Add("description", note.Description);
+            _browseListPage = _addListItemPage.AddNewItem(note.Title, note.Description);
         }
 
 
