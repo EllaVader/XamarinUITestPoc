@@ -1,6 +1,7 @@
 ﻿using BoDi;
 using MobileFramework.Config;
 using NUnit.Framework;
+using System;
 using TechTalk.SpecFlow;
 using Xamarin.UITest;
 
@@ -23,9 +24,28 @@ namespace MobileFramework.Hooks
         [BeforeScenario]
         public void SetupFeature()
         {
+            var appCenterTest = Environment.GetEnvironmentVariable("APP_CENTER_TEST");
+            TestContext.Out.WriteLine($"APP_CENTER_TEST is: {appCenterTest}");
             string target = TestContext.Parameters.Get("target");
-            AppInitializer.InitializeSettings(target);
-            _app = AppInitializer.StartApp();
+            TestContext.Out.WriteLine($"Target is: {target}");
+
+            if (string.IsNullOrEmpty(appCenterTest))
+            {
+                TestContext.Out.WriteLine("Running test locally");
+                AppInitializer.InitializeSettings(target);
+                _app = AppInitializer.StartApp();
+            }
+            else
+            {
+                TestContext.Out.WriteLine("Running test in App Center");
+                string blah = TestContext.Parameters.Get("TARGET");
+                TestContext.Out.WriteLine($"TestContext target is: {blah}");
+                string anotherTarget = Environment.GetEnvironmentVariable("TARGET");
+                TestContext.Out.WriteLine($"anotherTarget is: {anotherTarget}");
+                AppInitializer.InitializeSettings(anotherTarget);
+                _app = AppInitializer.StartApp();
+            }
+
             // set the IApp instance now - use this in step classes via Dependency Injection
             _container.RegisterInstanceAs(_app);
 

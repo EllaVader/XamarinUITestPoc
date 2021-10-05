@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using MobileFramework.Models;
+using NUnit.Framework;
 using System;
 using Xamarin.UITest;
 
@@ -31,7 +32,9 @@ namespace MobileFramework.Config
         public static void InitializeSettings(string target)
         {
             IConfigurationRoot config = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
+            TestContext.Out.WriteLine($"Inside IntializeSettings - Target is: {target}");
             AppDetails = config.GetSection(target).Get<AppDetail>();
+            TestContext.Out.WriteLine($"AppDetails is {AppDetails.AppPath}");
 
         }
     }
