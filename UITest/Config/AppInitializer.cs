@@ -1,20 +1,23 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using MobileFramework.Models;
+using System;
 using Xamarin.UITest;
 
 namespace MobileFramework.Config
 {
     public class AppInitializer
     {
-        public static IApp StartApp(Platform platform)
+        public static AppDetail AppDetails { get; set; }
+        public static IApp StartApp()
         {
-            if (Settings.Platform == Platform.Android)
+            if (AppDetails.Platform == Platform.Android)
             {
-                var path = Settings.PackagePath + Settings.PackageName;//@"C:\Users\JanineRoe\source\repos\JanineTestApp\JanineTestApp\JanineTestApp.Android\bin\Release\com.companyname.janinetestapp.apk";
+                var path = AppDetails.AppPath + AppDetails.PackageName;//@"C:\Users\JanineRoe\source\repos\JanineTestApp\JanineTestApp\JanineTestApp.Android\bin\Release\com.companyname.janinetestapp.apk";
                 return ConfigureApp.Android.ApkFile(path).StartApp();
             }
             else
             {
-               //var path = "/Users/janine/code/XamarinUITestPoc/JanineTestApp/JanineTestApp.iOS/bin/iPhoneSimulator/Debug/device-builds/iphone se (2nd generation)-15.0/JanineTestApp.iOS.app";
+                //var path = "/Users/janine/code/XamarinUITestPoc/JanineTestApp/JanineTestApp.iOS/bin/iPhoneSimulator/Debug/device-builds/iphone se (2nd generation)-15.0/JanineTestApp.iOS.app";
                 return ConfigureApp.iOS
                     .Debug()
                     //.AppBundle(path)
@@ -27,12 +30,9 @@ namespace MobileFramework.Config
 
         public static void InitializeSettings(string target)
         {
-            //var target = "Dev-iOS";
-            Settings.Name = TestConfiguration.Configuration.TestSettings[target].Name;
-            Settings.Platform = (Platform)Enum.Parse(typeof(Platform), TestConfiguration.Configuration.TestSettings[target].Platform); //Platform.iOS;
-            Settings.PackagePath = TestConfiguration.Configuration.TestSettings[target].PackagePath; //"/Users/janine/code/XamarinUITestPoc/JanineTestApp/JanineTestApp.iOS/bin/iPhoneSimulator/Debug/";
-            Settings.PackageName = TestConfiguration.Configuration.TestSettings[target].PackageName;
-            Settings.Environment = "";//TestConfiguration.Configuration.TestSettings[target].Environment;
+            IConfigurationRoot config = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
+            AppDetails = config.GetSection(target).Get<AppDetail>();
+
         }
     }
 }

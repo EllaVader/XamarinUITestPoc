@@ -25,11 +25,11 @@ namespace MobileFramework.Hooks
         {
             string target = TestContext.Parameters.Get("target");
             AppInitializer.InitializeSettings(target);
-            _app = AppInitializer.StartApp(Settings.Platform);
+            _app = AppInitializer.StartApp();
             // set the IApp instance now - use this in step classes via Dependency Injection
             _container.RegisterInstanceAs(_app);
 
-            _app.Repl();
+            //_app.Repl();
 
         }
 
