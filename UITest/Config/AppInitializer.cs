@@ -6,7 +6,7 @@ using Xamarin.UITest;
 
 namespace MobileFramework.Config
 {
-    public class AppInitializer
+    public static class AppInitializer
     {
         public static AppDetail AppDetails { get; set; }
         public static IApp StartApp()
