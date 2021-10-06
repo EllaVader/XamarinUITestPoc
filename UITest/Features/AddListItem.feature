@@ -6,6 +6,6 @@ Scenario: Add new list item
 	Given I am on the Browse Page
 	When I click the add
 	And I enter the list details as 
-	| title | description      |
+	| Title | Description      |
 	| Demo  | Demo description |
 	Then I should see the new item is added in the list

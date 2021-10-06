@@ -25,25 +25,18 @@ namespace MobileFramework.Hooks
         public void SetupFeature()
         {
             var appCenterTest = Environment.GetEnvironmentVariable("APP_CENTER_TEST");
-            Console.WriteLine($"APP_CENTER_TEST is: {appCenterTest}");
-            TestContext.Out.WriteLine($"APP_CENTER_TEST is: {appCenterTest}");
-            string target = TestContext.Parameters.Get("target");
-            TestContext.Out.WriteLine($"Target is: {target}");
-            Console.WriteLine($"Target is: {target}");
 
             if (string.IsNullOrEmpty(appCenterTest))
             {
                 TestContext.Out.WriteLine("Running test locally");
-                Console.WriteLine("Running test locally");
+
+                string target = TestContext.Parameters.Get("target");
                 AppInitializer.InitializeSettings(target);
                 _app = AppInitializer.StartApp();
             }
             else
             {
-                var t = Environment.GetEnvironmentVariable("TARGET");
-                TestContext.Out.WriteLine($"TARGET: {t}");
                 TestContext.Out.WriteLine("Running test in App Center");
-                Console.WriteLine("Running test in App Center");
                 _app = ConfigureApp.Android.StartApp();//AppInitializer.StartApp();
             }
 

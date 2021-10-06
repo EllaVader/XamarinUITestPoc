@@ -15,8 +15,11 @@ namespace MobileFramework.Pages
 
         public BrowseListPage AddNewItem(string text, string description)
         {
+           // AppContext.Tap(TextInput);
             AppContext.EnterText(TextInput, text);
+           // AppContext.Tap(DescriptionInput);
             AppContext.EnterText(DescriptionInput, description);
+           // AppContext.DismissKeyboard();
             AppContext.Tap(SaveButton);
 
             BrowseListPage listPage = new BrowseListPage(AppContext);
