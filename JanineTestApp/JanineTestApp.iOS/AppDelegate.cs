@@ -1,5 +1,8 @@
 ﻿
 using Foundation;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using UIKit;
 
 namespace JanineTestApp.iOS
@@ -19,7 +22,8 @@ namespace JanineTestApp.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-
+            AppCenter.Start("e239d59b-36b0-4666-8a64-d93bbe55777b",
+       typeof(Analytics), typeof(Crashes));
 #if ENABLE_TEST_CLOUD
             Xamarin.Calabash.Start();
 #endif
